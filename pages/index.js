@@ -1,12 +1,17 @@
 import axios from "axios";
 import Header from "../components/Header";
 import Coin from "../components/Coin";
+import { useCoinContext } from "../context/CoinContext";
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 export default function Home({coins}) {
+  const {filterCoinList} = useCoinContext();
+
+  const data = filterCoinList(coins);
+
   return (
     <div className={styles.container}>
       
@@ -24,7 +29,7 @@ export default function Home({coins}) {
         </div>
         <div className={styles.coinList}>
           {
-            coins.map(coin => (
+            data.map(coin => (
                 <Coin 
                 key={coin.id}
                 rank = {coin.rank}
