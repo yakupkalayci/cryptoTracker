@@ -1,13 +1,10 @@
 import { useState } from "react";
+import { useCoinContext } from "../context/CoinContext";
 
 import styles from "../styles/Header.module.css";
 
 export default function Header() {
-    const [searchVal, setSearchVal] = useState("");
-
-    const handleInput = (e) => {
-        setSearchVal(e.target.value);
-    }
+    const {searchVal, handleInput} = useCoinContext();
 
   return (
     <div className={styles.header}>
