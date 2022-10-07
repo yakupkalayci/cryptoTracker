@@ -1,7 +1,11 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 .container {
   padding: 0 2rem;
   background-color: rgb(91, 0, 156);
   color: #fff;
+  font-family: 'Poppins', sans-serif;
 }
 
 .header {
@@ -58,7 +62,7 @@
   width: 100%;
   border-bottom: 1px solid gray;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding-bottom: 10px;
 }
 

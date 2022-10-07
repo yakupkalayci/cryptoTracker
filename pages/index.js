@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import Coin from "../components/Coin";
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
@@ -37,9 +37,17 @@ export default function Home({coins}) {
         <div className={styles.coinList}>
           {
             coins.map(coin => (
-                <div key={coin.id}>
-                  {coin.name} <br />
-                </div>
+                <Coin 
+                key={coin.id}
+                rank = {coin.rank}
+                name = {`${coin.name} - ${coin.symbol}`}
+                symbol = {coin.symbol}
+                price = {Number(coin.priceUsd) < 0.1 ? Number(coin.priceUsd).toFixed(6) :  Number(coin.priceUsd).toFixed(2)}
+                changePercent24Hr = {Number(coin.changePercent24Hr).toFixed(2)}
+                supply = {Number(coin.supply).toFixed(0)}
+                marketCapUsd = {Number(coin.marketCapUsd).toFixed(0)}
+                volumeUsd24Hr = {Number(coin.volumeUsd24Hr).toFixed(0)}
+                />
             ))
           }
         </div>
