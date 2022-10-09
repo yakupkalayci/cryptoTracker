@@ -1,9 +1,12 @@
-import { useState } from "react";
+import react from "react";
+import Link from "next/link";
+import { MdOutlineFavoriteBorder, MdFavoriteBorder } from "react-icons/md";
+import { AiOutlineHome } from "react-icons/ai";
 import { useCoinContext } from "../context/CoinContext";
 
 import styles from "../styles/Header.module.css";
 
-export default function Header() {
+export default function Header({activePage}) {
     const {searchVal, handleInput} = useCoinContext();
 
   return (
@@ -11,6 +14,17 @@ export default function Header() {
         <h1 className={styles.logo}>Crypto<span>Tracker</span></h1>
 
       <div className={styles.searchContainer}>
+        <div className={styles.deneme}>
+          {
+            activePage !== "favs" ?
+            <Link href="/favs" passHref>              
+              <MdFavoriteBorder size="2em"/>
+            </Link> :
+            <Link href="/">
+              <AiOutlineHome size="2em" />
+            </Link> 
+          }
+        </div>
         <div>
           <input type="text" name="searchVal" value={searchVal} onChange={(e) => handleInput(e)} placeholder="Please type a coin name or symbol.." />
           <svg

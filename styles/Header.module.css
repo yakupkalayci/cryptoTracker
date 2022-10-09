@@ -16,11 +16,21 @@
 }
 
 .searchContainer {
+  position: relative;
   margin-top: 1rem;
   width: 100%;
   display: flex;
   justify-content: center;
   align-content: center;
+}
+
+.deneme {
+  position: absolute !important;
+  right: 0;
+}
+
+.deneme:hover {
+  color: rgb(191, 0, 250);
 }
 
 .searchContainer > div {

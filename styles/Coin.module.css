@@ -28,6 +28,15 @@
 .icon {
     width: 1% !important;
     margin: 0 !important;
+    z-index: 3;
+}
+
+.icon > svg {
+    font-size: 22px;
+}
+
+.icon > svg:hover {
+    color: black;
 }
 
 .rank {

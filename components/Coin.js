@@ -1,15 +1,49 @@
-import { MdFavoriteBorder, MdArrowDropUp, MdArrowDropDown} from "react-icons/md";
+import { MdFavoriteBorder, MdArrowDropUp, MdArrowDropDown, MdOutlineRemoveCircleOutline} from "react-icons/md";
+import { useToast } from '@chakra-ui/react'
+import { useCoinContext } from "../context/CoinContext";
 import { findDigit } from "../utils/findDigit";
 
 import styles from "../styles/Coin.module.css";
 
 export default function Coin(props) {
+  const {addToFavs, removeFromFavs} = useCoinContext();
+  const toast = useToast();
 
   return (
     <div className={styles.coin}>
-      <span className={styles.icon}>
-        <MdFavoriteBorder />
-      </span>
+      {
+        props.activePage === "home" ?
+        <span className={styles.icon} 
+        onClick={() => {
+          addToFavs(props);
+          toast({
+            title:"Success",
+            description: "Coin is added to your list.",
+            status:"success",
+            position:"bottom-left",
+            duration:3000
+          });
+        }}>
+          <MdFavoriteBorder />
+        </span>
+        :
+        <span 
+          className={styles.icon} 
+          onClick={
+            () => {
+              removeFromFavs(props.id);
+              toast({
+                title:"Success",
+                description: "Coin is removed from your list.",
+                status:"success",
+                position:"bottom-left",
+                duration:3000
+              })
+            }
+          }>
+          <MdOutlineRemoveCircleOutline/>
+        </span>
+      }
 
       <span className={styles.rank}> {props.rank}</span>
       <span className={styles.name}> 
