@@ -39,14 +39,14 @@ export default function Coin(props) {
     ) 
   }
 
-  if(isError) {
-    toast({
-      title: "Error",
-      description: "Failed to load",
-      status: "error",
-      isClosable: true,
-    })
-  }
+  // if(isError) {
+  //   toast({
+  //     title: "Error",
+  //     description: "Failed to load",
+  //     status: "error",
+  //     isClosable: true,
+  //   })
+  // }
 
   return (
     <div className={styles.coin}>
