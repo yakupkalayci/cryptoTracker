@@ -12,6 +12,7 @@
   color: #fff;
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
+  min-width: 1000px;
 }
 
 .message {
@@ -55,3 +56,12 @@
   font-weight: bold;
   color: rgb(255, 192, 203);
 }
+
+/* @media only screen and (max-width : 885px) {
+  .coinListContainer {
+    width: 100%;
+    overflow-x  : scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+} */
