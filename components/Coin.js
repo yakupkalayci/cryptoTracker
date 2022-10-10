@@ -1,5 +1,6 @@
 import { MdFavoriteBorder, MdArrowDropUp, MdArrowDropDown, MdOutlineRemoveCircleOutline} from "react-icons/md";
 import { useToast } from '@chakra-ui/react'
+import Image from "next/image";
 
 import { useCoinContext } from "../context/CoinContext";
 import useCoin from "../hooks/useCoin";
@@ -66,7 +67,7 @@ export default function Coin(props) {
 
       <span className={styles.rank}> {coin?.rank}</span>
       <span className={styles.name}> 
-        <img src={`./assets/32/icon/${coin?.symbol}.png`} alt="coinIcon"/> {`${coin?.name} - ${coin?.symbol}`}
+        <img src={`/assets/32/icon/${coin?.symbol}.png`} alt="" /> {`${coin?.name} - ${coin?.symbol}`}
       </span>
       <span className={styles.price}> ${findDigit(Number(coin?.priceUsd) < 0.1 ? Number(coin?.priceUsd).toFixed(6) :  Number(coin?.priceUsd).toFixed(2))}</span>
       <span className={styles.changePercent24Hr}> 
