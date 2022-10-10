@@ -10,8 +10,6 @@ import styles from "../styles/Coin.module.css";
 export default function Coin(props) {
   const {coin, isLoading, isError} = useCoin(props.id);
 
-  console.log(coin);
-
   const {addToFavs, removeFromFavs} = useCoinContext();
   const toast = useToast();
 
@@ -68,7 +66,7 @@ export default function Coin(props) {
 
       <span className={styles.rank}> {coin?.rank}</span>
       <span className={styles.name}> 
-        <img src={`./assets/32/icon/${coin?.symbol}.png`} /> {`${coin?.name} - ${coin?.symbol}`}
+        <img src={`../public/assets/32/icon/${coin?.symbol}.png`} /> {`${coin?.name} - ${coin?.symbol}`}
       </span>
       <span className={styles.price}> ${findDigit(Number(coin?.priceUsd) < 0.1 ? Number(coin?.priceUsd).toFixed(6) :  Number(coin?.priceUsd).toFixed(2))}</span>
       <span className={styles.changePercent24Hr}> 
