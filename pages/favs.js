@@ -5,7 +5,9 @@ import { useCoinContext } from "../context/CoinContext";
 import styles from "../styles/Favs.module.css";
 
 export default function Favs() {
-    const {favs} = useCoinContext();
+    const {favs, filterCoinList} = useCoinContext();
+
+    const results = filterCoinList(favs);
 
     return (
         <div className={styles.container}> 
@@ -24,20 +26,12 @@ export default function Favs() {
           </div>
           <div className={styles.coinList}>
             {
-              (favs?.length > 0) ?
-              favs.map(coin => (
+              (results.length > 0) ?
+              results.map(coin => (
                   <Coin 
                   activePage="favs"
                   key={coin.id}
                   id={coin.id}
-                  rank = {coin.rank}
-                  name = {`${coin.name}`}
-                  symbol = {coin.symbol}
-                  price = {coin.price}
-                  changePercent24Hr = {Number(coin.changePercent24Hr).toFixed(2)}
-                  supply = {Number(coin.supply).toFixed(0)}
-                  marketCapUsd = {Number(coin.marketCapUsd).toFixed(0)}
-                  volumeUsd24Hr = {Number(coin.volumeUsd24Hr).toFixed(0)}
                   />
               ))
               :

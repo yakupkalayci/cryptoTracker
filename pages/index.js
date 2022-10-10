@@ -1,21 +1,19 @@
 import axios from "axios";
-import useSwr from "swr";
-
+import {useCoinContext} from "../context/CoinContext";
+import useCoin from "../hooks/useCoin";
 import Header from "../components/Header";
 import Coin from "../components/Coin";
-import { useCoinContext } from "../context/CoinContext";
 import styles from "../styles/Home.module.css";
 
-const fetcher = url => axios.get(url).then(res => res.data.data);
 
-export default function Home() {
-  const {data, error} = useSwr("https://api.coincap.io/v2/assets", fetcher);
+export default function Home({coinList}) {
+  const {coin, isLoading, isError} = useCoin("bitcoin");
 
   const {filterCoinList} = useCoinContext();
-  const result = filterCoinList(data);
+  const result = filterCoinList(coinList);
 
-  if(error) return <div className={styles.container}><div className={styles.message}>Failed to load</div></div>
-  if(!data) return <div className={styles.container}><div className={styles.message}>Loading..</div></div>
+  if(isError) return <div className={styles.container}><div className={styles.message}>Failed to load</div></div>
+  if(isLoading) return <div className={styles.container}><div className={styles.message}>Loading..</div></div>
 
   return (
     <div className={styles.container}> 
@@ -37,17 +35,9 @@ export default function Home() {
               (result.length > 0) ?
               result.map(coin => (
                   <Coin
-                  activePage="home" 
                   key={coin.id}
                   id={coin.id}
-                  rank = {coin.rank}
-                  name = {`${coin.name} - ${coin.symbol}`}
-                  symbol = {coin.symbol}
-                  price = {Number(coin.priceUsd) < 0.1 ? Number(coin.priceUsd).toFixed(6) :  Number(coin.priceUsd).toFixed(2)}
-                  changePercent24Hr = {Number(coin.changePercent24Hr).toFixed(2)}
-                  supply = {Number(coin.supply).toFixed(0)}
-                  marketCapUsd = {Number(coin.marketCapUsd).toFixed(0)}
-                  volumeUsd24Hr = {Number(coin.volumeUsd24Hr).toFixed(0)}
+                  activePage="home" 
                   />
               ))
               :
@@ -61,3 +51,13 @@ export default function Home() {
   );
 }
 
+export async function getStaticProps() {
+  const {data} = await axios.get("https://api.coincap.io/v2/assets");
+
+  return {
+    props: {
+      coinList: data.data
+    }
+  }
+
+}

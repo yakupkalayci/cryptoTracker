@@ -3,6 +3,31 @@ import { useContext, createContext, useState, useEffect } from "react";
 const CoinContext = createContext();
 
 export const CoinProvider = ({ children }) => {
+  const successAddToast = {
+    title:"Success",
+    description: "Coin is added to your list.",
+    status:"success",
+    position:"bottom-left",
+    duration:3000
+  };
+
+  const successRemoveToast = {
+    title:"Success",
+    description: "Coin is removed from your list.",
+    status:"success",
+    position:"bottom-left",
+    duration:3000
+  }
+
+  const errorToast = 
+  {
+    title:"Warning",
+    description: "The Coin has already added to your list.",
+    status:"error",
+    position:"bottom-left",
+    duration:3000
+  };
+
   const [searchVal, setSearchVal] = useState("");
   const initialFavs = [];
   const [favs, setFavs] = useState(initialFavs);
@@ -43,9 +68,15 @@ export const CoinProvider = ({ children }) => {
   const addToFavs = (coin) => {
     if(favs.length > 0) {
       let result = favs.find(item => item.id === coin.id);
-      if(!result) setFavs([...favs, coin]); 
+      if(!result) {
+        setFavs([...favs, coin]);
+        return successAddToast;
+      } else {
+        return errorToast;
+      }
     } else {
       setFavs([...favs, coin]);
+      return successAddToast;
     }
   }
 
@@ -53,6 +84,7 @@ export const CoinProvider = ({ children }) => {
     setFavs(
       favs.filter(item => item.id !== id)
     );
+    return successRemoveToast;
   }
 
   return (
