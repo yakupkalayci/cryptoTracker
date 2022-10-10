@@ -11,7 +11,7 @@
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#5B009C", endColorstr="#CCB3D1", GradientType=1 );
   color: #fff;
   font-family: 'Poppins', sans-serif;
-  min-height: 100vh;
+  min-height: 300vh;
   min-width: 1000px;
 }
 
@@ -57,11 +57,8 @@
   color: rgb(255, 192, 203);
 }
 
-/* @media only screen and (max-width : 885px) {
+@media only screen and (max-width : 885px) {
   .coinListContainer {
-    width: 100%;
-    overflow-x  : scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
+    font-size: 1rem;
   }
-} */
+}

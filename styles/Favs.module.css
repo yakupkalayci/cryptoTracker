@@ -11,7 +11,8 @@
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#5B009C", endColorstr="#CCB3D1", GradientType=1 );
   color: #fff;
   font-family: 'Poppins', sans-serif;
-  min-height: 100vh;
+  min-height: 500vh;
+  min-width: 1000px;
 }
 
 .message {
